@@ -1,48 +1,28 @@
 <?php
 
-class Product {
+include_once __DIR__ . '/classes/Animalhouse.php';
+include_once __DIR__ . '/classes/Category.php';
+include_once __DIR__ . '/classes/Food.php';
+include_once __DIR__ . '/classes/Games.php';
+include_once __DIR__ . '/db.php'; ?>
 
-    private string $category;
-    private $img;
-    private string $title;
-    private string $price;
-    private string  $icon;
-
-    function __construct($category, $img, $title, $price, $icon)
-    {
-        $this->category = $category;
-        $this->img = $img;
-        $this->title = $title;
-        $this->price = $price;
-        $this->icon = $icon;
-    }
-
-    public function getProduct() { 
-        echo "<h1>La categoria è: {$this->category}</h1>";
-        echo "{$this->img}";
-        echo "<h2>Titolo: {$this->title}</h2>";
-        echo "<h2>Il prezzo è: {$this->price}</h2>";
-        echo "<div>Icon: {$this->icon}</div>";
-    }
-}
-
-class Food extends Product{
-
-}
-
-class Games extends Product{
-
-}
-
-class Animalhouse extends Product{
-
-}
-
-$arrProducts = [
-    new Product("Cane", "img", "title", "5,00€", "i")
-];
-
-foreach ($arrProducts as $product) {
-    echo $product->getProduct();
-    echo "<br>";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pet Shop</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center p-3">Shop Animals</h1>
+		<div class="row row-cols-3 g-5"><?php
+			foreach ($arrProducts as $objProduct) {
+				echo $objProduct->printCard();
+			} ?>
+		</div>
+	</div>
+</body>
+</html>
